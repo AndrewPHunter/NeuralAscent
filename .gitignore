@@ -84,3 +84,8 @@ coverage/
 
 ## Crash dumps
 *.dmp
+
+## Learning-plan source texts (large PDFs, not redistributed)
+## Exclude the contents, not the directory, so texts/README.md stays tracked.
+docs/learning/texts/*
+!docs/learning/texts/README.md

@@ -100,8 +100,21 @@ NeuralAscent/
 └── docs/
     ├── 00_overview.md      ← The full arc, explained
     ├── 01_perceptron.md    ← Theory, math, limitations, references
-    └── ...                 ← One doc per network
+    ├── ...                 ← One doc per network
+    └── learning/           ← Reading plan, library, and session notes
 ```
+
+---
+
+## The Learning Plan
+
+This repo is a learning journal as much as a codebase. The reading that runs alongside the
+implementation — nine print texts plus MacKay, mapped phase-by-phase onto the six modules —
+lives in [`docs/learning/`](./docs/learning/).
+
+It is kept in public in its actual state: implementations that aren't written yet are
+scaffolds, notes that aren't taken yet are empty files, and chapter citations that haven't
+been checked against the shelf are flagged as unverified rather than presented as fact.
 
 ---
 
