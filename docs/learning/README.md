@@ -17,6 +17,11 @@ code produces a result you don't fully understand, the books are the first stop.
 
 **Session cadence:** 45–60 minutes. Read before or immediately after each coding session.
 
+**The standard:** this is not reading to skim. Every module has a geometric object at its
+centre, and the test of understanding is whether you can *draw* it. See
+[`geometric-lens.md`](./geometric-lens.md) — it sets what "understood" means here, and the
+plan is subordinate to it.
+
 ---
 
 ## How This Folder Is Organised
@@ -26,6 +31,7 @@ code produces a result you don't fully understand, the books are the first stop.
 | [`library.md`](./library.md) | The ten texts, what each is for, and the citation verification status |
 | [`shelf-audit.md`](./shelf-audit.md) | Two-stage checklist for verifying the library and settling disputed citations |
 | [`plan.md`](./plan.md) | Master reading plan — phase-by-phase, with per-module guides |
+| [`geometric-lens.md`](./geometric-lens.md) | **How to read it.** The geometric object at the centre of each module, the "draw this" checkpoints, and where texts go algebra-heavy |
 | [`notes/`](./notes/) | One note file per module, following the three-question protocol |
 | `texts/` | Local PDFs (MacKay, ESL, Prince, J&M). **Gitignored** — see [`texts/README.md`](./texts/README.md) for fetch commands |
 

@@ -88,6 +88,39 @@ curl -L -o "docs/learning/texts/jurafsky-martin-slp3-aug26.pdf" \
 
 ---
 
+## Geometric Lens — Free Sources
+
+Added to support a geometry-first reading of the arc. See
+[`../geometric-lens.md`](../geometric-lens.md).
+
+### Bronstein, Bruna, Cohen & Veličković — *Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges* (2021)
+
+```bash
+curl -L -o "docs/learning/texts/bronstein-geometric-deep-learning.pdf" "https://arxiv.org/pdf/2104.13478"
+```
+
+- arXiv: <https://arxiv.org/abs/2104.13478> · 43 MB · 160 pp.
+- SHA-256 `dcf8212ed37db9ac154ac975b8f9c7d36831cf56b75261679b04ab9814985fc2`
+
+### Blum, Hopcroft & Kannan — *Foundations of Data Science*
+
+```bash
+curl -L -o "docs/learning/texts/blum-hopcroft-kannan-fods.pdf" "https://www.cs.cornell.edu/jeh/book.pdf"
+```
+
+- Hosted by Hopcroft at Cornell: <https://www.cs.cornell.edu/jeh/book.pdf> · 2.4 MB · 479 pp.
+- SHA-256 `7412c43877d8f460ba73739e0e5da8d5a3d8b0262475d10bb4897fe569b449f8`
+
+### Web-only (`.webloc` shortcuts in this folder)
+
+| Resource | URL |
+|---|---|
+| 3Blue1Brown — *Essence of Linear Algebra* | <https://www.3blue1brown.com/topics/linear-algebra> |
+| Olah — *Neural Networks, Manifolds, and Topology* | <https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/> |
+| Elhage et al. — *A Mathematical Framework for Transformer Circuits* | <https://transformer-circuits.pub/2021/framework/index.html> |
+
+---
+
 ## Everything else
 
 The remaining seven texts are print only. See [`../library.md`](../library.md).

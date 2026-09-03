@@ -108,6 +108,34 @@ directly relevant chapters were never assigned:
 
 ---
 
+### Geometric Lens — Sources
+
+Added to support a geometry-first reading. See [`geometric-lens.md`](./geometric-lens.md).
+
+| Text | Role |
+|---|---|
+| **Bronstein, Bruna, Cohen & Veličković (2021)** — *Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges* | **The unifying frame.** ✅ Verified: §3 *Geometric Priors* (symmetries, invariance), §5.1 CNNs, §5.2 group-equivariant CNNs, §5.4 *Deep Sets, Transformers*, §5.7 RNNs. Derives the arc's architectures from symmetry groups. Free (arXiv). |
+| **Blum, Hopcroft & Kannan** — *Foundations of Data Science* | **Module 5.** ✅ Verified Ch. 2: *The Geometry of High Dimensions*, *Properties of the Unit Ball*, *Gaussians in High Dimension*, *Johnson–Lindenstrauss*. Concentration of measure — why `√d` exists. Free (Cornell). |
+| **3Blue1Brown** — *Essence of Linear Algebra* | **Phase 0.** Free video. The geometric antidote to Schneider & Barker's formalism. |
+| **Olah** — *Neural Networks, Manifolds, and Topology* | **Module 2.** Free. The clearest statement that hidden layers warp space, and that warping has topological limits. |
+| **Elhage et al.** — *A Mathematical Framework for Transformer Circuits* | **Module 6.** Free. The residual stream as a vector space; heads reading and writing subspaces. |
+
+### From the Wider Shelf — Geometric and Foundational
+
+Surfaced when the arc was re-framed around geometry. Chapter references are **unverified**
+— see the [verification queue](./geometric-lens.md#verification-queue).
+
+| Text | Role |
+|---|---|
+| **Strogatz (2nd ed. 2015)** — *Nonlinear Dynamics and Chaos* | **Module 3 primary.** ✅ **Ch. 10 *One-Dimensional Maps*** is the priority — an RNN recurrence is a discrete-time **map**, whose fixed-point stability condition `\|λ\| < 1` *is* the vanishing-gradient condition. **Ch. 5 *Linear Systems*** gives eigenvalue classification of fixed points. Geometric throughout; displaces DiPrima as primary. |
+| **Munkres (2nd ed.)** — *Topology* | ✅ **Ch. 3 *Connectedness and Compactness*** · **Ch. 7 function spaces** · **Part II opens with the fundamental group**. |
+| ~~**Munkres** — *Topology*~~ *(detail)* | **Module 2.** Continuity and homeomorphism give the vocabulary; **connectedness** is the invariant behind Olah's argument that warping has limits; **compactness** is what makes universal approximation state at all; function spaces and Ascoli make it a topology result. The fundamental group is where "linked rings cannot be unlinked" becomes rigorous. |
+| **Lee (2nd ed. 2012)** — *Introduction to Smooth Manifolds* | **Module 2, structural.** ✅ **Ch. 3 *Tangent Vectors*** · **Ch. 11 *The Cotangent Bundle*** · **Ch. 13 *Riemannian Metrics***. Tangent spaces, differentials, and the cotangent bundle are the correct statement of what backprop computes: reverse-mode autodiff is the **pullback of a covector**. Also supplies the metric/gradient distinction that turns phase 2's optimisation material into one idea instead of a list. |
+| **Lee** — *Introduction to Topological Manifolds* | **Optional.** An alternative route to the fundamental group and covering spaces, often better motivated than Munkres Part II. |
+| **Royden & Fitzpatrick (5th ed.)** — *Real Analysis* | **Module 2, narrow.** ✅ **Ch. 18 Hahn–Banach.** Riesz is **distributed through the book** rather than in one chapter — the version Cybenko's proof needs is the representation of `C(X)*` as measures, not the Hilbert-space or `Lᵖ`-dual forms. One targeted use; measure theory otherwise does not earn a place in this arc. |
+
+---
+
 ## Coverage Gaps — What the Arc Still Needs
 
 Two capabilities the plan requires and the ten assessed texts do not supply. Stated as
