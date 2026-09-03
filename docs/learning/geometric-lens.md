@@ -117,8 +117,22 @@ every architecture in this repo.
 | **Larson Ch. 7** ✅ | Eigenvalues and eigenvectors, worked and illustrated |
 | **Schneider & Barker Ch. 1–6** ⚠︎ | Reference only — see the warnings below |
 
-**Checkpoint:** draw the image of the unit circle under `[[3,1],[1,2]]`. Mark the singular
-directions and the eigenvectors. Note that they are *different* directions, and know why.
+**Checkpoint:** draw the image of the unit circle under **two** matrices and compare.
+
+| | |
+|---|---|
+| `[[3,1],[1,2]]` | **Symmetric.** Eigenvectors and singular directions *coincide*. |
+| `[[1,1],[0,1]]` | **A shear.** One repeated eigenvalue (λ=1) with only **one** eigendirection, `(1,0)` — the matrix is not diagonalisable. Yet the unit circle still maps to a clean ellipse, with axes `φ` and `1/φ` along two perpendicular singular directions. |
+
+The shear is the instructive one. Determinant 1, so area is preserved — nothing is created
+or destroyed — but space is stretched by the golden ratio in one direction and compressed by
+its reciprocal in another. And the directions that *stretch* are not the direction that
+*survives unrotated*.
+
+**Know why eigen ≠ singular.** Eigenvectors answer "which directions are preserved?"
+Singular directions answer "which directions are stretched most?" Those are different
+questions, and they only give the same answer for symmetric matrices. Every weight matrix in
+this repo is non-symmetric.
 
 ### Phase 1 — Hyperplanes and cones
 
