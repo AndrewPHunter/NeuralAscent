@@ -1,6 +1,12 @@
-# The Geometric Lens
+# Reading Lenses
 
-*If you can draw it, you understand it.*
+*If you can draw it, you understand it. If you can say what it minimises and what it
+estimates, you understand it three ways.*
+
+**Three readings, held simultaneously:** geometric (what shape is this?), physical (what is
+being minimised?), and statistical (what is being estimated, and how wrong is it?). They are
+not alternatives. They are one subject under three questions, and the arc is only understood
+when all three answer.
 
 ---
 
@@ -45,10 +51,10 @@ the picture elsewhere. It is not permission to move on.
 
 ---
 
-## Four Ideas That Run Through Everything
+## Five Ideas That Run Through Everything
 
-These are not module-specific. They are the reason the geometric view pays off. The third
-and fourth — the physics thread — have their own section below, since they span every phase.
+These are not module-specific. Ideas 3 and 4 belong to the physics thread and idea 5 to the
+statistical thread; both have their own sections below, since they span every phase.
 
 ### 1. Backpropagation is the pullback of a covector
 
@@ -222,6 +228,63 @@ ellipse with axes `φ` and `1/φ`. Now name the rotation that accompanies it.
 **Checkpoint, phase 5:** derive `softmax = argmin F` yourself. Set up the Lagrangian for
 minimising `⟨E,p⟩ − H(p)` subject to `Σpᵢ = 1`, take the stationarity condition, and watch
 the exponential fall out of it. Then read the `√d` off as a temperature.
+
+---
+
+## The Statistical Thread
+
+The third reading. Where geometry asks *what shape is this* and physics asks *what is being
+minimised*, statistics asks **what is being estimated, from how much data, and how wrong is
+it likely to be.** These are not competing accounts — they are the same objects under
+different questions, and the arc is only understood when all three answer.
+
+### 5. One eigendecomposition, three names
+
+The cleanest demonstration that the readings coincide. Take the covariance matrix of your
+data and decompose it. The result is called:
+
+| Reading | Name | Question it answers |
+|---|---|---|
+| **Geometric** | Principal axes | Which directions does this transformation stretch? |
+| **Physics** | Normal modes | Which independent oscillations does this system have? |
+| **Statistical** | Principal components | Which directions carry the most variance in the sample? |
+
+Same matrix, same eigenvectors, same numbers. Three vocabularies because three communities
+arrived at it by different roads. If phase 0 lands, this stops being a coincidence and
+becomes obvious.
+
+### The thread, phase by phase
+
+| Phase | The statistical object | Source |
+|---|---|---|
+| **0** | Data as a **sample** from a distribution. The covariance matrix is a second moment — and an *estimate*, with its own error. PCA is the eigendecomposition above, read as variance. | ESL Ch. 3; Larson Ch. 7 |
+| **1** | The perceptron as one of several ways to fit a hyperplane — compare it to logistic regression and LDA, which differ in **loss and assumptions**, not in the shape of the answer. Capacity: the VC dimension of a hyperplane in `d` dimensions is `d+1`, and Cover's counting of separable dichotomies is the same fact from the geometric side. | ESL Ch. 4; MacKay Ch. 40; HKP Ch. 5 |
+| **2** | **The bias–variance decomposition** — the central statistical idea of the whole arc. Regularisation as *shrinkage*; weight decay as a Gaussian prior; MLE vs MAP; effective degrees of freedom; cross-validation as honest error estimation. | **ESL Ch. 7** ✅ *(unassigned — see below)*; ESL §3.4; ESL Ch. 11; MacKay Ch. 28 |
+| **3** | Sequences as **stochastic processes**. Stationarity, the Markov assumption, autocorrelation, maximum likelihood for dependent data — and why i.i.d. reasoning breaks when order matters. | Dielman (time series / autocorrelation); ESL Ch. 7 |
+| **4** | Weight sharing as a **prior**, in the precise statistical sense: a restriction of the hypothesis class that trades bias for variance. Equivariance lowers effective capacity, which is *why* it generalises from less data. | Bronstein §3; ESL Ch. 7 |
+| **5** | **Attention is kernel regression.** With a learned similarity kernel, `softmax(QKᵀ/√d)V` is a **Nadaraya–Watson estimator** — a locally weighted average of values, weights from a kernel on queries and keys. Cross-entropy is negative log-likelihood; attention weights are a posterior over positions. | **ESL Ch. 6** ✅ *Kernel Smoothing Methods* — §6.1 is Nadaraya–Watson *(unassigned)*; MacKay Ch. 2–4 |
+| **6** | Overparameterisation and generalisation without classical capacity control — interpolation, double descent, and why the bias–variance picture from phase 2 needs amending rather than discarding. | Prince Ch. 20; ESL Ch. 18 *(for p ≫ N, not for double descent — see V8)* |
+
+### Two ESL chapters the plan never assigned
+
+Verified against the PDF. Both sit at the centre of this thread:
+
+| | |
+|---|---|
+| **ESL Ch. 7 — *Model Assessment and Selection*** (p.219) | §7.2 *Bias, Variance and Model Complexity*, §7.3 *The Bias–Variance Decomposition*. The canonical treatment, and the plan assigns Ch. 3, 11 and 18 but not this. **Phase 2's most important statistical chapter was missing.** |
+| **ESL Ch. 6 — *Kernel Smoothing Methods*** (p.191) | §6.1 *One-Dimensional Kernel Smoothers* — Nadaraya–Watson, confirmed present in the text. The statistical reading of attention lives here. |
+
+This is the third time the audit has found directly relevant chapters unassigned in a book
+already on the list — after ESL §3.4 and GBC Ch. 4/8. **The plan's recurring failure is not
+wrong books; it is under-reading the right ones.**
+
+**Checkpoint, phase 2:** derive the bias–variance decomposition yourself, then produce it
+empirically — train your MLP at several hidden-layer widths, plot training and held-out
+error against width, and identify the two regimes.
+
+**Checkpoint, phase 5:** write scaled dot-product attention as a Nadaraya–Watson estimator.
+Name the kernel. Then say what the learned `Q` and `K` projections are doing that a fixed
+kernel cannot.
 
 ---
 

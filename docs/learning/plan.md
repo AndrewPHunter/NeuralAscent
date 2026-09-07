@@ -8,9 +8,11 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 > the physics reading of it, and the "draw this" checkpoint that says whether it landed.
 > This file says *what* to read; the lens says *how*.
 >
-> Geometry and physics are treated as one lens: a quadratic form is an energy, a symmetric
-> matrix is an energy landscape, softmax is the minimiser of a free energy. See
-> [the physics thread](./geometric-lens.md#the-physics-thread).
+> **Three readings are held simultaneously** — geometric (what shape is this?), physical
+> (what is being minimised?), statistical (what is being estimated, and how wrong is it?).
+> One eigendecomposition is principal axes, normal modes, and principal components. See
+> [the physics thread](./geometric-lens.md#the-physics-thread) and
+> [the statistical thread](./geometric-lens.md#the-statistical-thread).
 >
 > **All ten citation disputes are resolved** — verified against the shelf or the free
 > electronic editions. Markers link to
@@ -32,6 +34,7 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 | 1 | Perceptron 1957 | **Hertz, Krogh & Palmer** ✅[V4] *(now primary)* | ~~Ch. 1~~ → **Ch. 5 *Simple Perceptrons***: learning rule, convergence, linear separability, geometric interpretation | MacKay Ch. 39–40; Novikoff 1963; S&B Ch. 2 (dot product) |
 | 2 | MLP 1986 | Goodfellow, Bengio & Courville | Ch. 6 — feedforward networks, backprop derivation | HKP Ch. 6 |
 | 2 | MLP 1986 | Hastie, Tibshirani & Friedman | Ch. 11 — neural networks as statistical models | ~~Cohen Ch. 3~~ ❌[V10] — Ch. 3 is *Series*; **no source** |
+| 2 | MLP 1986 | **ESL Ch. 7** 🆕 *Model Assessment and Selection* | **§7.3 The Bias–Variance Decomposition** ✅ — the central statistical idea of the arc; also cross-validation and effective d.o.f. | MacKay Ch. 28 (Occam) |
 | 2 | MLP 1986 | Hertz, Krogh & Palmer | Ch. 6 — generalisation, weight decay, capacity | GBC Ch. 7 (regularisation) |
 | 2 | MLP 1986 | MacKay | ~~Ch. 41–43~~ ❌[V3] → **Ch. 39–41 + 44**, plus **Ch. 28** (evidence framework) | **ESL §3.4** 🆕 (cross-reference) |
 | 2 | MLP 1986 | **ESL §3.4** 🆕 *Shrinkage Methods* | **§3.4.1 Ridge Regression** — derived as posterior mode under a Gaussian prior | MacKay Ch. 41 / 44 |
@@ -44,6 +47,7 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 | 4 | CNN 1989 | Russell & Norvig | Ch. 25 — deep learning for vision & perception | GBC Ch. 9 (supplementary) |
 | 5 | Attention 2015 | Pierce | ~~Ch. 1–4~~ → **Ch. 3–5** ✅[V5] — *A Mathematical Model*, *Encoding and Binary Digits*, **Entropy (Ch. 5)** | MacKay Ch. 2–4 ✅ |
 | 5 | Attention 2015 | MacKay | Ch. 2–4 ✅ — entropy, inference, Bayesian framing | HKP Ch. 9 |
+| 5 | Attention 2015 | **ESL Ch. 6** 🆕 *Kernel Smoothing Methods* | **§6.1 Nadaraya–Watson** ✅ — attention *is* kernel regression with a learned similarity kernel | ESL Ch. 7 (bias–variance) |
 | 5 | Attention 2015 | Goodfellow, Bengio & Courville | **§12.4.5.1** ✅ — *Using an Attention Mechanism…*, a subsection of §12.4.5 *Neural Machine Translation*, not a chapter | Bahdanau et al. 2015 (paper) |
 | 6 | Transformer 2017 | **Prince** *Understanding Deep Learning* 🆕 *(primary)* | **Ch. 12 Transformers** ✅ — self-attention, multi-head, positional encoding, layer norm, encoder/decoder | Prince **Ch. 11** (batch norm, residuals) |
 | 6 | Transformer 2017 | Russell & Norvig | Ch. 24 — *Deep Learning for NLP* (4th ed. verified) — survey framing | **J&M Ch. 7** 🆕 *Transformers and Pretraining* |
@@ -98,7 +102,8 @@ people get stuck. Take your time here.
 |---|---|
 | **Goal** | Derive backpropagation yourself before reading it. Start from the loss function, apply the chain rule layer by layer, arrive at the weight update. Then read GBC Ch. 6 to check your derivation. |
 | **GBC Ch. 6** (primary) | The canonical modern derivation. Read the backprop section twice — once forward for the algorithm, once in reverse asking "where does each delta term come from?" The computation graph framing (§6.5) is particularly valuable. |
-| **ESL Ch. 11** | Reads the MLP as a statistical estimation problem. The bias–variance framing here is more useful for understanding why deep networks generalise than anything in GBC. |
+| **ESL Ch. 11** | Reads the MLP as a statistical estimation problem. |
+| **ESL Ch. 7** 🆕 ✅ *(was unassigned)* | *Model Assessment and Selection* — **§7.2 Bias, Variance and Model Complexity**, **§7.3 The Bias–Variance Decomposition**, then cross-validation and effective degrees of freedom. The canonical treatment of the arc's central statistical idea, in a book the plan already assigns three other chapters from. **Checkpoint:** derive the decomposition, then produce it empirically by sweeping hidden-layer width and plotting train vs held-out error. |
 | **HKP Ch. 6** | Weight decay, early stopping, and capacity from a statistical physics angle that makes the regularisation mechanisms feel principled rather than heuristic. |
 | **ESL §3.4 — *Shrinkage Methods*** 🆕 ✅ | **The missing bridge**, verified in the PDF. §3.4.1 derives ridge regression as the **mode of the posterior under a Gaussian prior** (βⱼ ~ N(0, τ²)). This is the same L2-equals-Gaussian-prior result MacKay reaches from the Bayesian side — here it arrives from the statistics side. The plan assigns ESL Ch. 11 and Ch. 18 but never Ch. 3, so this connection was sitting unused in a book already on the list. Read it immediately before MacKay Ch. 41. |
 | **GBC Ch. 4 + Ch. 8** 🆕 *(replaces Cohen)* | **Ch. 4 *Numerical Computation***: conditioning, poor conditioning, overflow/underflow, gradient-based optimisation. **Ch. 8 *Optimization for Training Deep Models***: ill-conditioning, local minima, plateaus, saddle points, cliffs, learning-rate schedules. The "why is my loss oscillating?" vocabulary — in a book already assigned five other chapters. **Read geometrically:** GBC presents these algebraically, but ill-conditioning *is* a mismatch between the Euclidean metric on parameter space and the loss geometry. Preconditioning, Newton, and natural gradient are all one idea — choosing a metric. See [`geometric-lens.md`](./geometric-lens.md#2-ill-conditioning-is-a-mismatch-of-metrics), with Lee **Ch. 13 *Riemannian Metrics*** for why the metric is what makes a gradient exist at all. |
@@ -146,6 +151,7 @@ people get stuck. Take your time here.
 | **Bahdanau et al. 2015** | The original attention paper. Short. Read after Pierce and GBC to see how the mechanism was first motivated — as a fix for the RNN encoder bottleneck, not as a general architecture. |
 | **Blum, Hopcroft & Kannan Ch. 2** 🆕 *(geometry)* | *The Geometry of High Dimensions*, *Properties of the Unit Ball*, *Gaussians in High Dimension*, *Johnson–Lindenstrauss*. In high dimensions random vectors are nearly orthogonal and dot products concentrate — **this is why √d exists.** Without rescaling, softmax saturates and gradients die. |
 | **Bronstein et al. §5.4** 🆕 | *Deep Sets, Transformers, and Latent Graph Inference* — attention as a **permutation-equivariant set operation**. Answers this module's own key question from the symmetry side. |
+| **Attention as kernel regression** 🆕 ✅ | **ESL Ch. 6 *Kernel Smoothing Methods*, §6.1 Nadaraya–Watson** (verified present, previously unassigned). `softmax(QKᵀ/√d)V` **is** a Nadaraya–Watson estimator — a locally weighted average of values with weights from a kernel on queries and keys. The statistical reading, sitting beside the energy reading below. |
 | **Softmax as free energy** 🆕 | `softmax(z) = argmin over the simplex of [⟨E,p⟩ − H(p)]` — the **Gibbs distribution**, the minimiser of `F = U − TS`, equivalently the maximum-entropy distribution at fixed expected energy. `log-sum-exp` is `log Z`, and `∇LSE = softmax`. **`√d` is a temperature.** Under the Fisher metric the simplex is a Riemannian manifold — the *same* metric as natural gradient in phase 2. See [the physics thread](./geometric-lens.md#3-softmax-is-the-minimiser-of-a-free-energy). |
 | **On the √d scaling** | The original plan framed `exp(QKᵀ/√d)`'s divisor as a temperature parameter in the Boltzmann sense, attributed to Pierce. Two caveats: the Boltzmann framing is statistical mechanics — **HKP's** territory, not Pierce's — and Vaswani motivates √d as dot-product *variance control* (§3.2.1), not temperature. The temperature reading is a good intuition; it is not the authors' stated motivation. |
 | **Code connection** | Implement scaled dot-product attention from scratch. Visualise the attention weights as a matrix — what patterns form on a synthetic sequence task? |
