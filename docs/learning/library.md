@@ -120,6 +120,14 @@ Added to support a geometry-first reading. See [`geometric-lens.md`](./geometric
 | **Olah** — *Neural Networks, Manifolds, and Topology* | **Module 2.** Free. The clearest statement that hidden layers warp space, and that warping has topological limits. |
 | **Elhage et al.** — *A Mathematical Framework for Transformer Circuits* | **Module 6.** Free. The residual stream as a vector space; heads reading and writing subspaces. |
 
+### Energy-Based Reading
+
+| Paper | Role |
+|---|---|
+| **Ramsauer et al. (2020)** — *Hopfield Networks is All You Need* | **Modules 5–6.** ✅ Verified: "The new update rule is equivalent to the attention mechanism used in transformers." Attention is one step of energy descent in a continuous Hopfield network, with global, metastable, and single-pattern attractors. The energy-based reading of the architecture — attractors are literal here, not analogy. |
+| **Song et al. (2021)** — *Score-Based Generative Modeling through SDEs* | **Module 6.** The probability-flow ODE computes log-likelihood as a **line integral** — the path formulation in deployed use, for when the partition function is not enumerable. |
+| **Lou et al. (2023)** — *Score Entropy Discrete Diffusion* | **Module 6.** Path-based generation applied to discrete language — the active frontier where the line-integral route reaches token generation. |
+
 ### From the Wider Shelf — Geometric and Foundational
 
 Surfaced when the arc was re-framed around geometry. Chapter references are **unverified**

@@ -121,6 +121,26 @@ curl -L -o "docs/learning/texts/blum-hopcroft-kannan-fods.pdf" "https://www.cs.c
 
 ---
 
+## Energy-Based Reading — Papers
+
+The energy-based account of the architecture: attention as energy descent, surprisal as
+work, likelihood as a path integral. See
+[`../geometric-lens.md`](../geometric-lens.md#4-attention-is-energy-descent-and-the-line-integral-is-not-a-metaphor).
+
+```bash
+curl -L -o "docs/learning/texts/ramsauer-hopfield-is-all-you-need.pdf"        "https://arxiv.org/pdf/2008.02217"
+curl -L -o "docs/learning/texts/song-score-based-sde.pdf"                     "https://arxiv.org/pdf/2011.13456"
+curl -L -o "docs/learning/texts/lou-score-entropy-discrete-diffusion.pdf"     "https://arxiv.org/pdf/2310.16834"
+```
+
+| Paper | arXiv | Why |
+|---|---|---|
+| Ramsauer et al., *Hopfield Networks is All You Need* | [2008.02217](https://arxiv.org/abs/2008.02217) | Proves the modern Hopfield update **is** transformer attention; three kinds of energy minima. 94 pp. |
+| Song et al., *Score-Based Generative Modeling through SDEs* | [2011.13456](https://arxiv.org/abs/2011.13456) | Probability-flow ODE — log-likelihood as a line integral. 36 pp. |
+| Lou et al., *Score Entropy Discrete Diffusion* | [2310.16834](https://arxiv.org/abs/2310.16834) | The "yet" — path-based generation reaching discrete language. 30 pp. |
+
+---
+
 ## Everything else
 
 The remaining seven texts are print only. See [`../library.md`](../library.md).

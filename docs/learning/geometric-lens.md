@@ -45,10 +45,10 @@ the picture elsewhere. It is not permission to move on.
 
 ---
 
-## Three Ideas That Run Through Everything
+## Four Ideas That Run Through Everything
 
-These are not module-specific. They are the reason the geometric view pays off. The third —
-the physics thread — has its own section below, since it spans every phase.
+These are not module-specific. They are the reason the geometric view pays off. The third
+and fourth — the physics thread — have their own section below, since they span every phase.
 
 ### 1. Backpropagation is the pullback of a covector
 
@@ -106,7 +106,10 @@ This is the geometric content of GBC Ch. 4 (*Numerical Computation*) and Ch. 8
 
 ## The Physics Thread
 
-Geometry and physics are the same lens here. A quadratic form *is* an energy; a symmetric
+Geometry and physics are the same lens here. Not as a teaching device — the objects are
+literally thermodynamic. Attention **is** energy descent with attractors; surprisal **is**
+work; the softmax **is** a Gibbs measure. Where a physical reading and an algebraic one
+disagree, the physical one is usually saying more. A quadratic form *is* an energy; a symmetric
 matrix *is* an energy landscape; a probability distribution *is* a thermodynamic state. The
 arc's books already carry this — HKP is a statistical mechanics text, MacKay's evidence
 framework is a partition function, Bronstein's title ends "and Gauges" — but the thread is
@@ -136,15 +139,63 @@ Three consequences worth holding:
 | **Legendre duality** | LSE and negative entropy are convex conjugates. This is the same duality as free energy ↔ entropy in thermodynamics — the structure, not a metaphor for it. |
 | **`√d` is a temperature** | `softmax(QKᵀ/√d)` is `softmax(z/T)` with `T = √d`. High temperature softens the distribution; low temperature sharpens it toward argmax. |
 
-**A caution on path language.** The minimisation above is *pointwise* over the simplex — no
-curve is integrated, so softmax is not literally a minimum line integral. But the path
-formulation is rigorous in three neighbouring places, and they matter:
+### 4. Attention is energy descent, and the line integral is not a metaphor
 
-| Formulation | Where the path lives |
+The free-energy statement above is the *equilibrium* picture. The dynamical picture is
+stronger, and it is the one that matters for what an LLM is doing internally.
+
+**Attention is one step of energy minimisation.** Ramsauer et al., *Hopfield Networks is All
+You Need* (arXiv:2008.02217), construct a continuous-state modern Hopfield network and prove:
+
+> "The new update rule is equivalent to the attention mechanism used in transformers."
+
+That update has **three kinds of energy minima** — a global fixed point averaging all
+patterns, metastable states averaging subsets, and fixed points storing a single pattern —
+and the paper characterises transformer heads by which regime they occupy (global averaging
+in early layers, metastable partial averaging in higher ones). **Attractors here are literal,
+not analogy.** A forward pass is descent in an energy landscape.
+
+**Surprisal is work — as theorems, not metaphor.** With `E(x) = −log p(x)` up to the free
+energy, the nonequilibrium identities apply directly:
+
+| Result | Statement |
 |---|---|
-| **Mirror descent**, entropy mirror map | Its continuous-time limit is a flow on the simplex (replicator dynamics); softmax is the equilibrium |
-| **Information geometry** (Amari) | The simplex under the **Fisher metric** is a Riemannian manifold, dually flat. Exponential families are e-flat; geodesics are well defined. This is where "geometry of the information space" is literal. |
-| **JKO / Otto calculus** | Fokker–Planck as gradient flow of free energy in the **Wasserstein metric** — a *minimising movement* scheme, and a genuine minimum-path formulation of this free energy |
+| **Jarzynski equality** | `⟨e^{−βW}⟩ = e^{−βΔF}` — work along a path relates to a free-energy difference |
+| **Crooks fluctuation theorem** | Forward and reverse path probabilities are related by `e^{βW_diss}` |
+| **Kawai–Parrondo–Van den Broeck** | `W_diss = kT · D_KL(forward ‖ reverse)` — **dissipated work *is* a relative surprisal** |
+
+Work is `∫ f · dx` along a path. So "surprisal as work" places a genuine line integral at the
+centre of the picture.
+
+**And the path integral is the actual computational route when `Z` is intractable.** In
+continuous normalising flows and score-based models (Song et al., arXiv:2011.13456), the
+probability-flow ODE gives log-likelihood *as a line integral*:
+
+```
+log p₀(x₀)  =  log p_T(x_T)  +  ∫₀ᵀ ∇·f(x_t, t) dt
+```
+
+This is deployed, not speculative — it is how exact likelihoods are computed in that family.
+
+**"Minimum" has an exact home: Benamou–Brenier.** The Wasserstein distance *is* a minimum
+action over paths in probability space,
+
+```
+W₂²(μ₀, μ₁)  =  min  ∫∫ |v|² dρ dt
+              paths
+```
+
+and the JKO scheme makes free-energy gradient flow the *minimising movement* under that
+metric. So "a minimum line integral across the information space" is not loose language —
+it is Benamou–Brenier plus JKO, and it is the exact dynamical counterpart of the pointwise
+free-energy minimisation in §3.
+
+**What softmax actually is, then.** Over a finite vocabulary, `Z` is exactly enumerable in
+one matmul — so softmax is the *cheap exact* route to the Gibbs measure. The path integral is
+the route to **the same object** when enumeration fails. The choice between them is
+tractability, not correctness. That is why token generation still uses softmax, and why the
+"yet" matters: discrete diffusion language models are actively closing the gap (Lou et al.,
+*Score Entropy Discrete Diffusion*, arXiv:2310.16834).
 
 **The unification.** The Fisher metric above is the *same object* as the natural gradient in
 [§2](#2-ill-conditioning-is-a-mismatch-of-metrics). Phase 2's optimisation geometry and
@@ -160,7 +211,8 @@ that happen to share vocabulary. Lee **Ch. 13** is the machinery for both.
 | **2** | The loss surface is an **energy landscape**. Weight decay is a **harmonic potential** — L2 is a spring, and the MAP estimate is a ground state. MacKay's evidence **is** the partition function: `log Z = −F`, and the Occam factor is an entropy term. Bayesian inference here is statistical mechanics at `β = 1`. | MacKay Ch. 28, 41, 44; HKP Ch. 6 |
 | **3** | Attractors and basins are the physics of dissipative systems. A **Lyapunov function** is an energy that decreases along trajectories — that is how convergence to an attractor is *proved*, not observed. Hopfield networks are spin glasses. | Strogatz Ch. 5, 10; HKP Ch. 7 and the Hopfield material |
 | **4** | Equivariance is **Noether's insight** in learning: a symmetry of the problem should be a symmetry of the model. Bronstein takes this to **gauge theory** — a gauge is a local choice of frame, and equivariance is the statement that predictions must not depend on it. | Bronstein §3.1, §4.5 *Gauges and Bundles*, §5.1–5.2 |
-| **5** | The module where the physics *is* the content — Gibbs distribution, partition function, free energy, temperature, maximum entropy. See §3 above. | HKP; MacKay Ch. 2–4; BHK Ch. 2 |
+| **5** | The module where the physics *is* the content — Gibbs distribution, partition function, free energy, temperature, maximum entropy (§3). And dynamically: **attention is one step of Hopfield energy descent**, with global, metastable, and single-pattern attractors (§4). | HKP; MacKay Ch. 2–4; BHK Ch. 2; Ramsauer et al. |
+| **6** *(dynamics)* | The forward pass as a **trajectory** — descent in an energy landscape across layers. Surprisal as work (Jarzynski, Crooks); likelihood as a path integral in the continuous case. Softmax is the enumerable shortcut, not the whole object. | Ramsauer; Song et al.; Lou et al. |
 | **6** | **Information and thermodynamics are the same subject.** Pierce has a chapter on exactly this ⟦verify P1⟧, currently unassigned. Landauer's principle — erasing a bit costs `kT ln 2` — is the bridge, and language modelling as compression sits on it. | Pierce ⟦verify P1⟧; Prince Ch. 20 |
 
 **Checkpoint, phase 0:** compute the polar decomposition of the shear `[[1,1],[0,1]]` and
@@ -312,6 +364,7 @@ hyperplane (zero mean) and a sphere (fixed norm), then rescaled.
 | **Prince Ch. 12** ✅ | Self-attention derived, with figures throughout |
 | **Prince Ch. 11** ✅ | Residual connections and normalisation — the prerequisite |
 | **Elhage et al. — *A Mathematical Framework for Transformer Circuits*** | The residual-stream-as-vector-space view, stated explicitly. Advanced, and the most geometric account of transformers available. |
+| **Ramsauer et al. — *Hopfield Networks is All You Need*** | **Attention is the update rule of a continuous Hopfield network** — so a forward pass is energy descent toward attractors, and heads are characterised by which attractor regime they occupy. The energy-based reading of the architecture. |
 | **Bronstein et al. §5.4** ✅ | Positional encoding as *breaking* permutation symmetry — the clean framing of why it is needed at all |
 | **Pierce — the physics chapter** ⟦verify P1⟧ | *Information Theory and Physics* — **currently unassigned.** Landauer's principle (erasing a bit costs `kT ln 2`) is where information and thermodynamics meet, and it is the substrate under "language modelling is compression." |
 | **Prince Ch. 20** ✅ | Overparameterisation and generalisation |
