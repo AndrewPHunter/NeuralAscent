@@ -24,10 +24,10 @@ the object.
 When a text hands you a manipulation with no picture attached, that is a **flag** — go find
 the picture elsewhere. It is not permission to move on.
 
-> **Every chapter reference in this document has been verified against the book it names.**
-> See the [verification record](#verification-queue) at the end. Nothing here is recalled
-> from memory — the original plan had eight of ten citations wrong, so predictions are
-> checked before they are written down.
+> **Chapter references here are verified against the book they name**, except where marked
+> ⟦verify⟧ — currently two items in the physics thread. See the
+> [verification record](#verification-queue) at the end. The original plan had eight of ten
+> citations wrong, so predictions get checked before they are relied on.
 
 ---
 
@@ -45,9 +45,10 @@ the picture elsewhere. It is not permission to move on.
 
 ---
 
-## Two Ideas That Run Through Everything
+## Three Ideas That Run Through Everything
 
-These are not module-specific. They are the reason the geometric view pays off.
+These are not module-specific. They are the reason the geometric view pays off. The third —
+the physics thread — has its own section below, since it spans every phase.
 
 ### 1. Backpropagation is the pullback of a covector
 
@@ -103,6 +104,75 @@ This is the geometric content of GBC Ch. 4 (*Numerical Computation*) and Ch. 8
 
 ---
 
+## The Physics Thread
+
+Geometry and physics are the same lens here. A quadratic form *is* an energy; a symmetric
+matrix *is* an energy landscape; a probability distribution *is* a thermodynamic state. The
+arc's books already carry this — HKP is a statistical mechanics text, MacKay's evidence
+framework is a partition function, Bronstein's title ends "and Gauges" — but the thread is
+worth naming, because it turns scattered results into one story.
+
+### 3. Softmax is the minimiser of a free energy
+
+The central case, because it recurs in modules 5 and 6.
+
+```
+softmax(z)  =  argmin  [ ⟨E, p⟩  −  H(p) ]        E = −z,   H(p) = −Σ pᵢ log pᵢ
+                p ∈ Δ
+                        ────────────────
+                          F  =  U − T·S            (Helmholtz free energy, T = 1)
+```
+
+Softmax is the **Gibbs distribution**: the unique minimiser of free energy over the
+probability simplex. Equivalently, by Jaynes' principle, the **maximum-entropy**
+distribution at fixed expected energy — the least-committed distribution consistent with
+what is known.
+
+Three consequences worth holding:
+
+| | |
+|---|---|
+| **`log-sum-exp` is `log Z`** | The log partition function. And `∇LSE = softmax` — the distribution is the *gradient* of the free energy. |
+| **Legendre duality** | LSE and negative entropy are convex conjugates. This is the same duality as free energy ↔ entropy in thermodynamics — the structure, not a metaphor for it. |
+| **`√d` is a temperature** | `softmax(QKᵀ/√d)` is `softmax(z/T)` with `T = √d`. High temperature softens the distribution; low temperature sharpens it toward argmax. |
+
+**A caution on path language.** The minimisation above is *pointwise* over the simplex — no
+curve is integrated, so softmax is not literally a minimum line integral. But the path
+formulation is rigorous in three neighbouring places, and they matter:
+
+| Formulation | Where the path lives |
+|---|---|
+| **Mirror descent**, entropy mirror map | Its continuous-time limit is a flow on the simplex (replicator dynamics); softmax is the equilibrium |
+| **Information geometry** (Amari) | The simplex under the **Fisher metric** is a Riemannian manifold, dually flat. Exponential families are e-flat; geodesics are well defined. This is where "geometry of the information space" is literal. |
+| **JKO / Otto calculus** | Fokker–Planck as gradient flow of free energy in the **Wasserstein metric** — a *minimising movement* scheme, and a genuine minimum-path formulation of this free energy |
+
+**The unification.** The Fisher metric above is the *same object* as the natural gradient in
+[§2](#2-ill-conditioning-is-a-mismatch-of-metrics). Phase 2's optimisation geometry and
+phase 5's softmax geometry are one Riemannian structure on one manifold — not two subjects
+that happen to share vocabulary. Lee **Ch. 13** is the machinery for both.
+
+### The thread, phase by phase
+
+| Phase | The physics | Source |
+|---|---|---|
+| **0** | A quadratic form `xᵀAx` **is** an energy; a symmetric matrix is an energy landscape and its eigenvectors are **principal axes** — the normal modes of a coupled oscillator. The **polar decomposition** `A = QS` splits any map into rotation × stretch, which is exactly how continuum mechanics decomposes a **deformation**. "What a matrix does to space" is deformation of a medium. | Larson Ch. 7; 3Blue1Brown |
+| **1** | Capacity is a *counting* problem, and counting states is entropy. HKP computes perceptron capacity by the methods of statistical mechanics — Gardner's replica calculation of storage capacity is the canonical result. | HKP Ch. 5, and the formal statistical mechanics chapter ⟦verify P2⟧; MacKay Ch. 40 |
+| **2** | The loss surface is an **energy landscape**. Weight decay is a **harmonic potential** — L2 is a spring, and the MAP estimate is a ground state. MacKay's evidence **is** the partition function: `log Z = −F`, and the Occam factor is an entropy term. Bayesian inference here is statistical mechanics at `β = 1`. | MacKay Ch. 28, 41, 44; HKP Ch. 6 |
+| **3** | Attractors and basins are the physics of dissipative systems. A **Lyapunov function** is an energy that decreases along trajectories — that is how convergence to an attractor is *proved*, not observed. Hopfield networks are spin glasses. | Strogatz Ch. 5, 10; HKP Ch. 7 and the Hopfield material |
+| **4** | Equivariance is **Noether's insight** in learning: a symmetry of the problem should be a symmetry of the model. Bronstein takes this to **gauge theory** — a gauge is a local choice of frame, and equivariance is the statement that predictions must not depend on it. | Bronstein §3.1, §4.5 *Gauges and Bundles*, §5.1–5.2 |
+| **5** | The module where the physics *is* the content — Gibbs distribution, partition function, free energy, temperature, maximum entropy. See §3 above. | HKP; MacKay Ch. 2–4; BHK Ch. 2 |
+| **6** | **Information and thermodynamics are the same subject.** Pierce has a chapter on exactly this ⟦verify P1⟧, currently unassigned. Landauer's principle — erasing a bit costs `kT ln 2` — is the bridge, and language modelling as compression sits on it. | Pierce ⟦verify P1⟧; Prince Ch. 20 |
+
+**Checkpoint, phase 0:** compute the polar decomposition of the shear `[[1,1],[0,1]]` and
+identify the rotation and the stretch separately. You have already drawn the stretch — the
+ellipse with axes `φ` and `1/φ`. Now name the rotation that accompanies it.
+
+**Checkpoint, phase 5:** derive `softmax = argmin F` yourself. Set up the Lagrangian for
+minimising `⟨E,p⟩ − H(p)` subject to `Σpᵢ = 1`, take the stationarity condition, and watch
+the exponential fall out of it. Then read the `√d` off as a temperature.
+
+---
+
 ## Per-Module Geometry
 
 ### Phase 0 — What a matrix does to space
@@ -116,6 +186,7 @@ every architecture in this repo.
 | **3Blue1Brown — *Essence of Linear Algebra*** | The direct geometric route. Linear maps, determinant as volume scaling, eigenvectors as invariant directions. Watch before opening either textbook. |
 | **Larson Ch. 7** ✅ | Eigenvalues and eigenvectors, worked and illustrated |
 | **Schneider & Barker Ch. 1–6** ⚠︎ | Reference only — see the warnings below |
+| **The physics** | A quadratic form `xᵀAx` is an **energy**; eigenvectors of a symmetric matrix are **principal axes**, the normal modes of a coupled oscillator. The **polar decomposition** `A = QS` splits any map into rotation × stretch — the continuum-mechanics decomposition of a deformation. |
 
 **Checkpoint:** draw the image of the unit circle under **two** matrices and compare.
 
@@ -187,6 +258,7 @@ contraction along the Jacobian's eigendirections — a statement about a dynamic
 | **Boyce & DiPrima Ch. 7 + Ch. 9** ✅ *(9th ed.)* | *Systems of First Order Linear Equations* and *Nonlinear Differential Equations and Stability*. **Paired deliberately** — solve the same systems Strogatz draws. Seeing the portrait and computing the solution are different acts; doing both on one equation is where the geometry stops being decoration. Note these are **flows**, so the stability condition is `Re(λ) < 0` — the continuous analogue, not the RNN's own condition. |
 | **HKP Ch. 7** | Recurrent networks as dynamical systems, attractors |
 | **Prince §11.3** ✅ | Exploding gradients in residual networks |
+| **The physics** | A **Lyapunov function** is an energy that decreases along trajectories — the tool that *proves* convergence to an attractor rather than observing it. Hopfield networks are spin glasses; HKP's energy-landscape framing is the same object. |
 | **Schneider & Barker Ch. 6 / Larson Ch. 7** ✅ | Eigenvalues, re-read against the recurrence Jacobian |
 
 **Checkpoint:** the phase portrait of your trained recurrence, fixed points classified by
@@ -204,6 +276,7 @@ parameter saving is a consequence, not the motivation.
 | **Bronstein et al. §5.1–5.2** ✅ | CNNs and group-equivariant CNNs *derived from* the translation group |
 | **Bronstein et al. §3.1** ✅ | Symmetries, representations, invariance — the general frame |
 | **GBC Ch. 9** | The algebra and the engineering |
+| **The physics** | Equivariance is **Noether's insight** applied to learning: a symmetry of the problem should be a symmetry of the model. Bronstein §4.5 takes it to **gauge theory** — a gauge is a local choice of frame; equivariance says predictions must not depend on which frame you picked. |
 
 **Checkpoint:** show your 1-D kernel commuting with a shift — translate the input, and the
 output translates identically.
@@ -222,6 +295,7 @@ point in their simplex. Attention cannot leave that hull.
 | **Blum, Hopcroft & Kannan Ch. 2** ✅ | *The Geometry of High Dimensions*, *Properties of the Unit Ball*, *Gaussians in High Dimension*, *Johnson–Lindenstrauss*. Why random vectors are nearly orthogonal. This is the `√d` explanation. |
 | **Bronstein et al. §5.4** ✅ | *Deep Sets, Transformers, and Latent Graph Inference* — attention as a **permutation-equivariant set operation**. This answers module 5's own key question from the symmetry side. |
 | **Pierce Ch. 3–5** ✅ / **MacKay Ch. 2–4** ✅ | The information-theoretic lens. Not geometric — and that is fine, it is the right lens for softmax-as-distribution. |
+| **The physics** — see [the thread](#3-softmax-is-the-minimiser-of-a-free-energy) | Softmax **is** the Gibbs distribution: the minimiser of free energy `F = U − TS` over the simplex, equivalently the maximum-entropy distribution at fixed expected energy. `log-sum-exp` is `log Z`. `√d` is a temperature. Under the Fisher metric the simplex becomes a Riemannian manifold — the same metric as natural gradient in phase 2. |
 
 **Checkpoint:** sample random vectors in 2, 10, and 1000 dimensions and plot the
 distribution of pairwise dot products. Watch it concentrate. Then show what softmax does to
@@ -239,6 +313,7 @@ hyperplane (zero mean) and a sphere (fixed norm), then rescaled.
 | **Prince Ch. 11** ✅ | Residual connections and normalisation — the prerequisite |
 | **Elhage et al. — *A Mathematical Framework for Transformer Circuits*** | The residual-stream-as-vector-space view, stated explicitly. Advanced, and the most geometric account of transformers available. |
 | **Bronstein et al. §5.4** ✅ | Positional encoding as *breaking* permutation symmetry — the clean framing of why it is needed at all |
+| **Pierce — the physics chapter** ⟦verify P1⟧ | *Information Theory and Physics* — **currently unassigned.** Landauer's principle (erasing a bit costs `kT ln 2`) is where information and thermodynamics meet, and it is the substrate under "language modelling is compression." |
 | **Prince Ch. 20** ✅ | Overparameterisation and generalisation |
 
 **Checkpoint:** draw the residual stream with each head's read and write subspaces marked.
@@ -316,3 +391,10 @@ prediction below, TOC line back, record.
 
 **All ten geometric references verified.** Every chapter number in this document has been
 checked against the book it names.
+
+**Open — physics thread:**
+
+| ID | Book | Question | Expected |
+|---|---|---|---|
+| **P1** | Pierce (Dover 1980) | What are **Ch. 9** and **Ch. 10** titled? | Ch. 10 expected to be *Information Theory and Physics* — the Landauer / thermodynamics bridge for module 6. Ch. 9 expected *Many Dimensions*, which may also be relevant to phase 5's high-dimensional geometry. |
+| **P2** | Hertz, Krogh & Palmer (1991) | Is there a chapter on the **formal statistical mechanics** of neural networks? Which number? | Expected last in the book — the formal treatment underpinning the capacity results in Ch. 5 |

@@ -5,8 +5,12 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 
 > **Read this alongside [`geometric-lens.md`](./geometric-lens.md).** That document sets the
 > standard the arc is actually held to — the geometric object at the centre of each module,
-> and the "draw this" checkpoint that says whether it landed. This file says *what* to read;
-> the lens says *how*.
+> the physics reading of it, and the "draw this" checkpoint that says whether it landed.
+> This file says *what* to read; the lens says *how*.
+>
+> Geometry and physics are treated as one lens: a quadratic form is an energy, a symmetric
+> matrix is an energy landscape, softmax is the minimiser of a free energy. See
+> [the physics thread](./geometric-lens.md#the-physics-thread).
 >
 > **All ten citation disputes are resolved** — verified against the shelf or the free
 > electronic editions. Markers link to
@@ -142,6 +146,7 @@ people get stuck. Take your time here.
 | **Bahdanau et al. 2015** | The original attention paper. Short. Read after Pierce and GBC to see how the mechanism was first motivated — as a fix for the RNN encoder bottleneck, not as a general architecture. |
 | **Blum, Hopcroft & Kannan Ch. 2** 🆕 *(geometry)* | *The Geometry of High Dimensions*, *Properties of the Unit Ball*, *Gaussians in High Dimension*, *Johnson–Lindenstrauss*. In high dimensions random vectors are nearly orthogonal and dot products concentrate — **this is why √d exists.** Without rescaling, softmax saturates and gradients die. |
 | **Bronstein et al. §5.4** 🆕 | *Deep Sets, Transformers, and Latent Graph Inference* — attention as a **permutation-equivariant set operation**. Answers this module's own key question from the symmetry side. |
+| **Softmax as free energy** 🆕 | `softmax(z) = argmin over the simplex of [⟨E,p⟩ − H(p)]` — the **Gibbs distribution**, the minimiser of `F = U − TS`, equivalently the maximum-entropy distribution at fixed expected energy. `log-sum-exp` is `log Z`, and `∇LSE = softmax`. **`√d` is a temperature.** Under the Fisher metric the simplex is a Riemannian manifold — the *same* metric as natural gradient in phase 2. See [the physics thread](./geometric-lens.md#3-softmax-is-the-minimiser-of-a-free-energy). |
 | **On the √d scaling** | The original plan framed `exp(QKᵀ/√d)`'s divisor as a temperature parameter in the Boltzmann sense, attributed to Pierce. Two caveats: the Boltzmann framing is statistical mechanics — **HKP's** territory, not Pierce's — and Vaswani motivates √d as dot-product *variance control* (§3.2.1), not temperature. The temperature reading is a good intuition; it is not the authors' stated motivation. |
 | **Code connection** | Implement scaled dot-product attention from scratch. Visualise the attention weights as a matrix — what patterns form on a synthetic sequence task? |
 | **Key question** | Attention is a set operation — it has no notion of order. How does the Transformer handle sequence order? (Positional encoding — preview of module 6.) |
