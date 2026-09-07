@@ -34,6 +34,7 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 | 0 | Pre-flight Foundations | Schneider & Barker | ~~Ch. 1–4~~ → **Ch. 1–6** ✅[V9] — matrices, linear equations, vector spaces, determinants … **eigenvalues (Ch. 6)** | HKP Ch. 1 (review) |
 | 0 | Pre-flight Foundations | Hertz, Krogh & Palmer | Ch. 1 — introduction & statistical framing | ~~Nilsson Ch. 1–2~~ ❌[V1] — void |
 | 0 | Pre-flight Foundations | **Larson** *Elementary Linear Algebra* 🆕 | Through **Ch. 7 *Eigenvalues and Eigenvectors*** ✅ — the approachable route alongside S&B | S&B Ch. 1–6 |
+| 1 | Perceptron 1957 | **HKP Ch. 10** 🆕 ✅ *(physics)* | *Formal statistical mechanics of neural networks* — the treatment behind the Ch. 5 capacity results; Gardner's replica calculation | MacKay Ch. 40 (capacity) |
 | 1 | Perceptron 1957 | **Hertz, Krogh & Palmer** ✅[V4] *(now primary)* | ~~Ch. 1~~ → **Ch. 5 *Simple Perceptrons***: learning rule, convergence, linear separability, geometric interpretation | MacKay Ch. 39–40; Novikoff 1963; S&B Ch. 2 (dot product) |
 | 2 | MLP 1986 | Goodfellow, Bengio & Courville | Ch. 6 — feedforward networks, backprop derivation | HKP Ch. 6 |
 | 2 | MLP 1986 | Hastie, Tibshirani & Friedman | Ch. 11 — neural networks as statistical models | ~~Cohen Ch. 3~~ ❌[V10] — Ch. 3 is *Series*; **no source** |
@@ -50,12 +51,13 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 | 4 | CNN 1989 | Russell & Norvig | Ch. 25 — deep learning for vision & perception | GBC Ch. 9 (supplementary) |
 | 5 | Attention 2015 | Pierce | ~~Ch. 1–4~~ → **Ch. 3–5** ✅[V5] — *A Mathematical Model*, *Encoding and Binary Digits*, **Entropy (Ch. 5)** | MacKay Ch. 2–4 ✅ |
 | 5 | Attention 2015 | MacKay | Ch. 2–4 ✅ — entropy, inference, Bayesian framing | HKP Ch. 9 |
+| 5 | Attention 2015 | **Pierce Ch. 9** 🆕 ✅ *Many Dimensions* | Shannon's geometry — signals as points in n-dim space, sphere packing, capacity geometrically | **BHK Ch. 2** (concentration) |
 | 5 | Attention 2015 | **ESL Ch. 6** 🆕 *Kernel Smoothing Methods* | **§6.1 Nadaraya–Watson** ✅ — attention *is* kernel regression with a learned similarity kernel | ESL Ch. 7 (bias–variance) |
 | 5 | Attention 2015 | Goodfellow, Bengio & Courville | **§12.4.5.1** ✅ — *Using an Attention Mechanism…*, a subsection of §12.4.5 *Neural Machine Translation*, not a chapter | Bahdanau et al. 2015 (paper) |
 | 6 | Transformer 2017 | **Prince** *Understanding Deep Learning* 🆕 *(primary)* | **Ch. 12 Transformers** ✅ — self-attention, multi-head, positional encoding, layer norm, encoder/decoder | Prince **Ch. 11** (batch norm, residuals) |
 | 6 | Transformer 2017 | Russell & Norvig | Ch. 24 — *Deep Learning for NLP* (4th ed. verified) — survey framing | **J&M Ch. 7** 🆕 *Transformers and Pretraining* |
 | 6 | Transformer 2017 | ~~GBC Ch. 12 + Epilogue~~ ❌[V2] | **Does not exist** — GBC predates the architecture | — |
-| 6 | Transformer 2017 | Pierce | ~~Ch. 8–10~~ → **Ch. 6–8** ✅[V6] — *Language and Meaning*, *Efficient Encoding*, *The Noisy Channel* | Vaswani et al. 2017 (paper) |
+| 6 | Transformer 2017 | Pierce | ~~Ch. 8–10~~ → **Ch. 6–8** ✅[V6] — *Language and Meaning*, *Efficient Encoding*, *The Noisy Channel* — **plus Ch. 10** 🆕 *Information Theory and Physics* (Landauer) | Vaswani et al. 2017 (paper) |
 | 6 | Transformer 2017 | **Prince Ch. 20** 🆕 *(replaces the ESL framing)* | **§20.4 generalization · §20.5 *Do we need so many parameters?*** — the overparameterisation argument ESL Ch. 18 ❌[V8] does not make | ESL Ch. 18 (read for p ≫ N statistics only) |
 
 ---

@@ -37,10 +37,10 @@ the object.
 When a text hands you a manipulation with no picture attached, that is a **flag** — go find
 the picture elsewhere. It is not permission to move on.
 
-> **Chapter references here are verified against the book they name**, except where marked
-> ⟦verify⟧ — currently two items in the physics thread. See the
+> **Every chapter reference in this document is verified against the book it names** — on
+> the shelf, or in the free electronic edition where one exists. See the
 > [verification record](#verification-queue) at the end. The original plan had eight of ten
-> citations wrong, so predictions get checked before they are relied on.
+> citations wrong, which is why nothing here is written from memory.
 
 ---
 
@@ -221,13 +221,13 @@ that happen to share vocabulary. Lee **Ch. 13** is the machinery for both.
 | Phase | The physics | Source |
 |---|---|---|
 | **0** | A quadratic form `xᵀAx` **is** an energy; a symmetric matrix is an energy landscape and its eigenvectors are **principal axes** — the normal modes of a coupled oscillator. The **polar decomposition** `A = QS` splits any map into rotation × stretch, which is exactly how continuum mechanics decomposes a **deformation**. "What a matrix does to space" is deformation of a medium. | Larson Ch. 7; 3Blue1Brown |
-| **1** | Capacity is a *counting* problem, and counting states is entropy. HKP computes perceptron capacity by the methods of statistical mechanics — Gardner's replica calculation of storage capacity is the canonical result. | HKP Ch. 5, and the formal statistical mechanics chapter ⟦verify P2⟧; MacKay Ch. 40 |
+| **1** | Capacity is a *counting* problem, and counting states is entropy. HKP computes perceptron capacity by the methods of statistical mechanics — Gardner's replica calculation of storage capacity is the canonical result. | **HKP Ch. 5 + Ch. 10** ✅ *(formal statistical mechanics)*; MacKay Ch. 40 |
 | **2** | The loss surface is an **energy landscape**. Weight decay is a **harmonic potential** — L2 is a spring, and the MAP estimate is a ground state. MacKay's evidence **is** the partition function: `log Z = −F`, and the Occam factor is an entropy term. Bayesian inference here is statistical mechanics at `β = 1`. | MacKay Ch. 28, 41, 44; HKP Ch. 6 |
 | **3** | Attractors and basins are the physics of dissipative systems. A **Lyapunov function** is an energy that decreases along trajectories — that is how convergence to an attractor is *proved*, not observed. Hopfield networks are spin glasses. | Strogatz Ch. 5, 10; HKP Ch. 7 and the Hopfield material |
 | **4** | Equivariance is **Noether's insight** in learning: a symmetry of the problem should be a symmetry of the model. Bronstein takes this to **gauge theory** — a gauge is a local choice of frame, and equivariance is the statement that predictions must not depend on it. | Bronstein §3.1, §4.5 *Gauges and Bundles*, §5.1–5.2 |
 | **5** | The module where the physics *is* the content — Gibbs distribution, partition function, free energy, temperature, maximum entropy (§3). And dynamically: **attention is one step of Hopfield energy descent**, with global, metastable, and single-pattern attractors (§4). | HKP; MacKay Ch. 2–4; BHK Ch. 2; Ramsauer et al. |
 | **6** *(dynamics)* | The forward pass as a **trajectory** — descent in an energy landscape across layers. Surprisal as work (Jarzynski, Crooks); likelihood as a path integral in the continuous case. Softmax is the enumerable shortcut, not the whole object. | Ramsauer; Song et al.; Lou et al. |
-| **6** | **Information and thermodynamics are the same subject.** Pierce has a chapter on exactly this ⟦verify P1⟧, currently unassigned. Landauer's principle — erasing a bit costs `kT ln 2` — is the bridge, and language modelling as compression sits on it. | Pierce ⟦verify P1⟧; Prince Ch. 20 |
+| **6** | **Information and thermodynamics are the same subject.** Landauer's principle — erasing a bit costs `kT ln 2` — is the bridge, and language modelling as compression sits on it. | **Pierce Ch. 10** ✅ *Information Theory and Physics*; Prince Ch. 20 |
 
 **Checkpoint, phase 0:** compute the polar decomposition of the shear `[[1,1],[0,1]]` and
 identify the rotation and the stretch separately. You have already drawn the stretch — the
@@ -346,6 +346,7 @@ becomes obvious.
 | **2** | **The bias–variance decomposition** — the central statistical idea of the whole arc. Regularisation as *shrinkage*; weight decay as a Gaussian prior; MLE vs MAP; effective degrees of freedom; cross-validation as honest error estimation. | **ESL Ch. 7** ✅ *(unassigned — see below)*; ESL §3.4; ESL Ch. 11; MacKay Ch. 28 |
 | **3** | Sequences as **stochastic processes**. Stationarity, the Markov assumption, autocorrelation, maximum likelihood for dependent data — and why i.i.d. reasoning breaks when order matters. | Dielman (time series / autocorrelation); ESL Ch. 7 |
 | **4** | Weight sharing as a **prior**, in the precise statistical sense: a restriction of the hypothesis class that trades bias for variance. Equivariance lowers effective capacity, which is *why* it generalises from less data. | Bronstein §3; ESL Ch. 7 |
+| **5** | *(geometry of information)* Shannon's own picture: signals as **points in n-dimensional space**, with capacity a sphere-packing result. The geometric reading of information theory, complementing the concentration results. — **Pierce Ch. 9 *Many Dimensions*** ✅ |
 | **5** | **Attention is kernel regression.** With a learned similarity kernel, `softmax(QKᵀ/√d)V` is a **Nadaraya–Watson estimator** — a locally weighted average of values, weights from a kernel on queries and keys. Cross-entropy is negative log-likelihood; attention weights are a posterior over positions. | **ESL Ch. 6** ✅ *Kernel Smoothing Methods* — §6.1 is Nadaraya–Watson *(unassigned)*; MacKay Ch. 2–4 |
 | **6** | Overparameterisation and generalisation without classical capacity control — interpolation, double descent, and why the bias–variance picture from phase 2 needs amending rather than discarding. | Prince Ch. 20; ESL Ch. 18 *(for p ≫ N, not for double descent — see V8)* |
 
@@ -596,7 +597,7 @@ hyperplane (zero mean) and a sphere (fixed norm), then rescaled.
 | **Elhage et al. — *A Mathematical Framework for Transformer Circuits*** | The residual-stream-as-vector-space view, stated explicitly. Advanced, and the most geometric account of transformers available. |
 | **Ramsauer et al. — *Hopfield Networks is All You Need*** | **Attention is the update rule of a continuous Hopfield network** — so a forward pass is energy descent toward attractors, and heads are characterised by which attractor regime they occupy. The energy-based reading of the architecture. |
 | **Bronstein et al. §5.4** ✅ | Positional encoding as *breaking* permutation symmetry — the clean framing of why it is needed at all |
-| **Pierce — the physics chapter** ⟦verify P1⟧ | *Information Theory and Physics* — **currently unassigned.** Landauer's principle (erasing a bit costs `kT ln 2`) is where information and thermodynamics meet, and it is the substrate under "language modelling is compression." |
+| **Pierce Ch. 10** ✅ *Information Theory and Physics* | Where information and thermodynamics meet — Landauer's principle, `kT ln 2` per erased bit, and the substrate under "language modelling is compression." **Was unassigned**: it fell out of the plan when V6 moved module 6 from Ch. 8–10 to Ch. 6–8. Now restored. |
 | **Prince Ch. 20** ✅ | Overparameterisation and generalisation |
 
 **Checkpoint:** draw the residual stream with each head's read and write subspaces marked.
@@ -679,9 +680,9 @@ checked against the book it names.
 
 | ID | Book | Question | Expected |
 |---|---|---|---|
-| **P1** | Pierce (Dover 1980) | What are **Ch. 9** and **Ch. 10** titled? | Ch. 10 expected to be *Information Theory and Physics* — the Landauer / thermodynamics bridge for module 6. Ch. 9 expected *Many Dimensions*, which may also be relevant to phase 5's high-dimensional geometry. |
+| **P1** ✅ | Pierce (Dover 1980) | **Ch. 9 *Many Dimensions*** — Shannon's geometry: signals as points in n-dimensional space, sphere packing, capacity derived geometrically. Pairs with BHK Ch. 2 for phase 5. **Ch. 10 *Information Theory and Physics*** — the Landauer bridge for module 6. |
 | **F1** ✅ | Feynman, *Lectures on Physics*, Millennium Ed. | **Vol. II Ch. 19** — *The Principle of Least Action* |
 | **F2** ✅ | Feynman & Hibbs | Owned — Dover **2005 emended edition** (Styer's corrected text) |
 | **F3** ✅ | Feynman & Hibbs | **Ch. 10** — *Statistical Mechanics*. §7's direct source: `Z = Tr e^{−βH}` as a path integral in imaginary time |
 | **F4** ✅ | Feynman & Hibbs | **Ch. 12** — the probability chapter carrying the **Wiener integral**; the bridge to §8 and to diffusion models |
-| **P2** | Hertz, Krogh & Palmer (1991) | Is there a chapter on the **formal statistical mechanics** of neural networks? Which number? | Expected last in the book — the formal treatment underpinning the capacity results in Ch. 5 |
+| **P2** ✅ | Hertz, Krogh & Palmer (1991) | **Ch. 10** — the formal statistical mechanics of neural networks. The backbone of the physics thread, and the formal treatment behind the Ch. 5 capacity results. |
