@@ -8,11 +8,14 @@ reading, the specific chapter focus, and a supplementary text for an alternative
 > the physics reading of it, and the "draw this" checkpoint that says whether it landed.
 > This file says *what* to read; the lens says *how*.
 >
-> **Three readings are held simultaneously** — geometric (what shape is this?), physical
-> (what is being minimised?), statistical (what is being estimated, and how wrong is it?).
-> One eigendecomposition is principal axes, normal modes, and principal components. See
-> [the physics thread](./geometric-lens.md#the-physics-thread) and
-> [the statistical thread](./geometric-lens.md#the-statistical-thread).
+> **Four readings are held simultaneously** — geometric (what shape is this?), physical
+> (what is being minimised?), statistical (what is being estimated?), and field-theoretic
+> (what does a *typical* one do, and how does that change with scale?). One eigendecomposition
+> is principal axes, normal modes, and principal components. See
+> [physics](./geometric-lens.md#the-physics-thread),
+> [statistical](./geometric-lens.md#the-statistical-thread), and
+> [field-theoretic](./geometric-lens.md#the-field-theoretic-thread) — the last is the
+> capstone and presumes the other three.
 >
 > **All ten citation disputes are resolved** — verified against the shelf or the free
 > electronic editions. Markers link to
@@ -110,6 +113,7 @@ people get stuck. Take your time here.
 | **Dielman** 🆕 *(supporting)* | Multicollinearity and ill-conditioning made concrete: why correlated or badly scaled inputs wreck a fitted model. Do **not** rely on it for ridge — business-oriented regression texts often omit it; ESL §3.4 is the source for that. |
 | ~~**Cohen Ch. 3**~~ ❌[V10] | **Struck — verified void.** Ch. 3 is *Series*, not gradient methods. Series expansions do sit behind optimisation theory (Taylor expansion underpins gradient and Newton methods), so the chapter is not useless — but it does not supply the "why is my loss oscillating?" vocabulary the plan wanted. **Phase 2 currently has no numerical-analysis source.** Open: whether any other chapter of Cohen covers optimisation. |
 | **MacKay** ✅[V3] | The Bayesian interpretation of weight decay: L2 regularisation is exactly equivalent to a Gaussian prior on the weights — not a heuristic, but inference. **Corrected range: Ch. 39–41 + Ch. 44**, with **Ch. 28** (*Model Comparison and Occam's Razor*) for the evidence framework. Ch. 42–43 are Hopfield and Boltzmann networks — not weight decay. |
+| **Initialisation is a criticality condition** 🆕 | Mean-field signal propagation has an **order/chaos phase transition**: ordered → gradients vanish, chaotic → gradients explode, critical → trainable at any depth. **Xavier and He are that critical point**, not heuristics. Note `Matrix.Random` defaults to a *fixed* `stdDev = 0.1` independent of `fan_in` — off criticality for any realistic layer, and the theory predicts the failure quantitatively. See [the field-theoretic thread](./geometric-lens.md#the-field-theoretic-thread). |
 | **What backprop actually is** 🆕 | Reverse-mode autodiff **pulls a covector back** through the composition; the chain rule is `d(g∘f) = dg ∘ df`. The loss maps to ℝ, so there is exactly one covector at the output — which is why reverse mode costs one sweep and forward mode costs one per parameter. `∂L/∂W = δ · aᵀ` is a pullback. See [`geometric-lens.md`](./geometric-lens.md#1-backpropagation-is-the-pullback-of-a-covector) and Lee, *Smooth Manifolds* **Ch. 3** (tangent vectors, the differential) then **Ch. 11** (cotangent bundle). |
 | **Code connection** | Implement backprop with delta values printed at each layer. Verify by numerical gradient checking: perturb each weight by ε, compute `(L(w+ε) − L(w−ε)) / 2ε`, confirm it matches the analytical gradient. **Note:** this requires a fixed RNG seed — `Matrix.Random` defaults to `seed: null` and is nondeterministic. |
 | **Geometry — Olah + Munkres** 🆕 | See [`geometric-lens.md`](./geometric-lens.md#phase-2--warping-space-and-the-limits-of-warping). The hidden layer warps input space until the problem is separable — but a layer with invertible weights and a monotonic activation is a **homeomorphism**, and homeomorphisms preserve topological invariants. So warping alone cannot separate every dataset. That is *why hidden layers need width*, as a theorem rather than a heuristic. Olah draws it; Munkres proves it. |
@@ -128,6 +132,7 @@ people get stuck. Take your time here.
 | **Boyce & DiPrima Ch. 7 + Ch. 9** 🆕 ✅ *(paired deliberately)* | *Systems of First Order Linear Equations* and *Nonlinear Differential Equations and Stability* (9th ed.). Solve the same systems Strogatz draws. **Seeing the portrait and computing the solution are different acts** — doing both on one equation is where the geometry stops being decoration. Note these are **flows** (`Re(λ) < 0`), the continuous analogue of the RNN's own `|λ| < 1`. |
 | **Missing assignment** ✅[V9] | The key question below is explicitly an eigenvalue problem, but no linear algebra reading is assigned to this phase. Now that eigenvalues are located: **Schneider & Barker Ch. 6 — or Larson Ch. 7** ✅ — **belongs here**, re-read against the recurrence Jacobian — not only skimmed in phase 0. With DiPrima added, phase 3 now has both the linear algebra and the dynamical-systems view of the same object. |
 | **Code connection** | Train on the sine wave sequence dataset (`Data/Sequences.cs`). Deliberately use a long sequence. Inspect gradient magnitudes at each timestep during BPTT — they should decay exponentially toward the earliest timesteps. |
+| **Same transition as phase 2** 🆕 | The vanishing/exploding gradient here is the **ordered/chaotic phase** of the very transition that governs initialisation in phase 2 — run in time rather than depth. One result, two modules. |
 | **Key question** | The vanishing gradient is an eigenvalue problem. What property of the weight matrix would prevent it? (This motivates LSTM, which you won't implement but should understand in principle.) |
 
 ## Phase 4 — CNN (Module 04)

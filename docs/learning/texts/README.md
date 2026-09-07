@@ -141,6 +141,32 @@ curl -L -o "docs/learning/texts/lou-score-entropy-discrete-diffusion.pdf"     "h
 
 ---
 
+## Field-Theoretic Reading — Papers
+
+Deep networks as random fields: mean-field signal propagation, criticality, the infinite-width
+limit, and the `1/n` expansion. See
+[`../geometric-lens.md`](../geometric-lens.md#the-field-theoretic-thread).
+
+```bash
+curl -L -o "docs/learning/texts/roberts-yaida-principles-of-dl-theory.pdf"    "https://arxiv.org/pdf/2106.10165"
+curl -L -o "docs/learning/texts/schoenholz-deep-information-propagation.pdf"  "https://arxiv.org/pdf/1611.01232"
+curl -L -o "docs/learning/texts/jacot-neural-tangent-kernel.pdf"              "https://arxiv.org/pdf/1806.07572"
+curl -L -o "docs/learning/texts/lee-dnn-as-gaussian-processes.pdf"            "https://arxiv.org/pdf/1711.00165"
+```
+
+| Source | arXiv | Why |
+|---|---|---|
+| **Roberts, Yaida & Hanin, *The Principles of Deep Learning Theory*** | [2106.10165](https://arxiv.org/abs/2106.10165) | **The primary text.** A book-length effective field theory — chapters on *RG Flow of Preactivations* and *Effective Theory of the NTK*. The `1/n` expansion, with `r = L/n` as the coupling. 471 pp. |
+| Schoenholz et al., *Deep Information Propagation* | [1611.01232](https://arxiv.org/abs/1611.01232) | Order/chaos transition; criticality; where Xavier/He come from. 18 pp. |
+| Jacot et al., *Neural Tangent Kernel* | [1806.07572](https://arxiv.org/abs/1806.07572) | Training dynamics in the infinite-width limit. 19 pp. |
+| Lee et al., *Deep Neural Networks as Gaussian Processes* | [1711.00165](https://arxiv.org/abs/1711.00165) | The free theory: infinite width **is** a Gaussian process. 17 pp. |
+
+Also relevant, not downloaded: Poole et al., *Exponential expressivity through transient
+chaos* ([1606.05340](https://arxiv.org/abs/1606.05340)); Halverson, Maiti & Stoner, *Neural
+Networks and Quantum Field Theory* ([2008.08601](https://arxiv.org/abs/2008.08601)).
+
+---
+
 ## Everything else
 
 The remaining seven texts are print only. See [`../library.md`](../library.md).

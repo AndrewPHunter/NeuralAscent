@@ -128,6 +128,15 @@ Added to support a geometry-first reading. See [`geometric-lens.md`](./geometric
 | **Song et al. (2021)** — *Score-Based Generative Modeling through SDEs* | **Module 6.** The probability-flow ODE computes log-likelihood as a **line integral** — the path formulation in deployed use, for when the partition function is not enumerable. |
 | **Lou et al. (2023)** — *Score Entropy Discrete Diffusion* | **Module 6.** Path-based generation applied to discrete language — the active frontier where the line-integral route reaches token generation. |
 
+### Field-Theoretic Reading
+
+| Source | Role |
+|---|---|
+| **Roberts, Yaida & Hanin (2022)** — *The Principles of Deep Learning Theory* | **The capstone text.** ✅ Verified: an explicit **effective field theory** of deep networks — chapters *RG Flow of Preactivations*, *Effective Theory of Preactivations at Initialization*, *RG Flow of the Neural Tangent Kernel*. The expansion parameter is the depth-to-width ratio `r = L/n`, verified verbatim: "In the strict limit r → 0, the interactions between neurons turn off." Free on arXiv, 471 pp. |
+| **Schoenholz et al. (2017)** — *Deep Information Propagation* | **Phases 2–3.** Mean-field variance and correlation maps; the order/chaos transition. **Xavier and He initialisation are the criticality condition**, not heuristics — and the same transition explains the RNN vanishing gradient. |
+| **Jacot et al. (2018)** — *Neural Tangent Kernel* | **Phase 2.** Training dynamics in the infinite-width limit. |
+| **Lee et al. (2018)** — *Deep Neural Networks as Gaussian Processes* | **Phase 2.** The free theory: infinite width is exactly a Gaussian process, and therefore learns no features. |
+
 ### From the Wider Shelf — Geometric and Foundational
 
 Surfaced when the arc was re-framed around geometry. Chapter references are **unverified**

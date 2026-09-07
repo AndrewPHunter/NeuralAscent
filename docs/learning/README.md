@@ -17,10 +17,10 @@ code produces a result you don't fully understand, the books are the first stop.
 
 **Session cadence:** 45–60 minutes. Read before or immediately after each coding session.
 
-**The standard:** this is not reading to skim. Every module is read three ways — geometric
+**The standard:** this is not reading to skim. Every module is read four ways — geometric
 (what shape is this?), physical (what is being minimised?), statistical (what is being
-estimated, and how wrong is it?). The test is whether you can draw it, say what it
-minimises, and say what it estimates. See
+estimated?), and field-theoretic (what does a *typical* one do at scale?). The test is
+whether you can answer all four. The fourth is the capstone and presumes the rest. See
 [`geometric-lens.md`](./geometric-lens.md) — it sets what "understood" means here, and the
 plan is subordinate to it.
 
@@ -33,7 +33,7 @@ plan is subordinate to it.
 | [`library.md`](./library.md) | The ten texts, what each is for, and the citation verification status |
 | [`shelf-audit.md`](./shelf-audit.md) | Two-stage checklist for verifying the library and settling disputed citations |
 | [`plan.md`](./plan.md) | Master reading plan — phase-by-phase, with per-module guides |
-| [`geometric-lens.md`](./geometric-lens.md) | **How to read it.** Three readings held together — geometric, physical, statistical — with the object at the centre of each module, the "draw this" checkpoints, and where texts go algebra-heavy |
+| [`geometric-lens.md`](./geometric-lens.md) | **How to read it.** Four readings held together — geometric, physical, statistical, field-theoretic — with the object at the centre of each module, the checkpoints, and where texts go algebra-heavy |
 | [`notes/`](./notes/) | One note file per module, following the three-question protocol |
 | `texts/` | Local PDFs (MacKay, ESL, Prince, J&M). **Gitignored** — see [`texts/README.md`](./texts/README.md) for fetch commands |
 

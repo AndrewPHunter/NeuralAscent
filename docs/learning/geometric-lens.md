@@ -3,10 +3,17 @@
 *If you can draw it, you understand it. If you can say what it minimises and what it
 estimates, you understand it three ways.*
 
-**Three readings, held simultaneously:** geometric (what shape is this?), physical (what is
-being minimised?), and statistical (what is being estimated, and how wrong is it?). They are
-not alternatives. They are one subject under three questions, and the arc is only understood
-when all three answer.
+**Four readings, held simultaneously:**
+
+| | Asks |
+|---|---|
+| **Geometric** | What shape is this? |
+| **Physical** | What is being minimised? |
+| **Statistical** | What is being estimated, and how wrong is it? |
+| **Field-theoretic** | What does a *typical* one of these do, and how does that change with scale? |
+
+They are not alternatives. They are one subject under four questions, and the arc is only
+understood when all four answer. The fourth is the capstone and presumes the other three.
 
 ---
 
@@ -51,10 +58,11 @@ the picture elsewhere. It is not permission to move on.
 
 ---
 
-## Five Ideas That Run Through Everything
+## Six Ideas That Run Through Everything
 
-These are not module-specific. Ideas 3 and 4 belong to the physics thread and idea 5 to the
-statistical thread; both have their own sections below, since they span every phase.
+These are not module-specific. Ideas 3–4 belong to the physics thread, 5 to the statistical
+thread, and 6 to the field-theoretic thread; each has its own section below, since each spans
+every phase.
 
 ### 1. Backpropagation is the pullback of a covector
 
@@ -285,6 +293,89 @@ error against width, and identify the two regimes.
 **Checkpoint, phase 5:** write scaled dot-product attention as a Nadaraya–Watson estimator.
 Name the kernel. Then say what the learned `Q` and `K` projections are doing that a fixed
 kernel cannot.
+
+---
+
+## The Field-Theoretic Thread
+
+The fourth reading, and the capstone. The first three ask what one network *is*. This one
+asks what a **typical** network is — treating the weights as a random field, the layers as a
+flow, and depth as the direction that flow runs in.
+
+**Read this last.** It presumes the other three: you need the geometry to know what a matrix
+does to space, the physics to read an energy landscape, and the statistics to know what an
+ensemble is. Attempted first it is vocabulary; attempted last it is the unification.
+
+### 6. Width is the inverse coupling constant
+
+The organising idea, from Roberts, Yaida & Hanin, *The Principles of Deep Learning Theory*
+(arXiv:2106.10165) — a book-length **effective field theory** of deep networks, with chapters
+literally titled *RG Flow of Preactivations* and *Effective Theory of the NTK*.
+
+The expansion parameter is the **depth-to-width aspect ratio**, verified in their text:
+
+```
+r ≡ L / n          L = depth,  n = width
+```
+
+> "In the strict limit `r → 0`, the interactions between neurons turn off."
+
+| Regime | What it is |
+|---|---|
+| `n → ∞`, `r → 0` | The **free theory**. Neurons decouple; the network is exactly a Gaussian process (NNGP). Analytically solvable, and it *does not learn features* — no interactions, nothing to renormalise. |
+| Finite `n`, small `r` | The **interacting theory**. The `1/n` corrections *are* feature learning. This is where real networks live. |
+| `r` too large | Perturbation theory breaks. Too deep for its width — the network is untrainable, and the theory says so quantitatively. |
+
+This is the large-`N` expansion of field theory, transplanted. And **depth is RG time**: the
+layer-to-layer evolution of the preactivation distribution is a renormalisation group flow.
+
+### The loop this closes
+
+At the end of phase 0 you were asked what `Matrix.Random`'s fixed `stdDev` does to a freshly
+initialised layer, and whether the answer depends on the layer's dimensions. **This thread is
+the answer.**
+
+Mean-field signal propagation (Poole et al., arXiv:1606.05340; Schoenholz et al., *Deep
+Information Propagation*, arXiv:1611.01232) tracks how activation variance and cross-input
+correlation evolve layer by layer. Both maps have fixed points, and there is an **order/chaos
+phase transition** between them:
+
+| Phase | Behaviour | Gradients |
+|---|---|---|
+| **Ordered** | Correlations converge — all inputs look alike after enough depth | **Vanish** |
+| **Chaotic** | Correlations diverge — nearby inputs decorrelate | **Explode** |
+| **Critical** (the edge) | Correlation length diverges | Neither — trainable depth is unbounded |
+
+**Xavier and He initialisation are the criticality condition.** `σ²_w = 2/n_in` is not a
+heuristic that happened to work; it is where the variance map sits at its critical fixed
+point. Off criticality, signal dies or blows up exponentially in depth.
+
+And this is a live defect in the repo, not an abstraction:
+[`Core/Matrix.cs`](../../NeuralAscent/Core/Matrix.cs) declares
+`Random(rows, cols, stdDev = 0.1, ...)` — a **fixed** standard deviation, independent of
+`fan_in`. For any realistic layer that is off criticality. The theory predicts the scaffold
+will fail to train deep networks, and says why.
+
+**And it is the same phase transition as module 3's.** The vanishing/exploding gradient of an
+RNN is the ordered/chaotic phase of this transition, run in time instead of depth. One
+result, two modules.
+
+### The thread, phase by phase
+
+| Phase | The field-theoretic object | Source |
+|---|---|---|
+| **0** | A random weight matrix is a draw from an **ensemble**. The question stops being "what does this matrix do to space" and becomes "what does a *typical* matrix do" — random matrix theory, spectra, and whether signal survives. | Roberts & Yaida Ch. 0–2 |
+| **1** | Gardner's replica calculation: the solution space as a statistical ensemble, and **capacity as a phase transition**. Spin-glass field theory applied to the perceptron. | HKP; MacKay Ch. 40 |
+| **2** | **The centrepiece.** Mean-field variance and correlation maps, the order/chaos transition, criticality, and the derivation of Xavier/He. Then **NNGP** (infinite width = free theory, arXiv:1711.00165), **NTK** (training linearises, arXiv:1806.07572), and the `1/n` expansion for finite width. | Schoenholz; Lee et al.; Jacot et al.; Roberts & Yaida Ch. 4–5 |
+| **3** | The same transition in **time**. Edge of chaos for recurrent dynamics; Lyapunov exponents. The vanishing/exploding gradient *is* the ordered/chaotic phase. | Schoenholz; Strogatz Ch. 10 |
+| **4** | Convolution is a **local interaction**; translation invariance is momentum conservation, so the natural basis is Fourier. Locality as a field-theoretic constraint. | Bronstein §4.2; Roberts & Yaida |
+| **5** | Attention is a **non-local, all-to-all interaction** — the field-theoretic contrast with convolution's locality. That contrast, not the QKV mechanics, is what makes attention a different kind of object. | Bronstein §5.4 |
+| **6** | `r = L/n` as the effective coupling; **RG flow of preactivations** across depth; scaling laws read as critical phenomena. | Roberts & Yaida Ch. 4, 8–9 |
+
+**Checkpoint, phase 2:** compute the variance map for a ReLU layer by hand, find its fixed
+point, and derive `σ²_w = 2/n_in` from the criticality condition. Then set `Matrix.Random`'s
+`stdDev` to `0.1` on a 10-layer network and watch the activations die — the prediction is
+quantitative, so check the rate against the theory, not just the direction.
 
 ---
 
