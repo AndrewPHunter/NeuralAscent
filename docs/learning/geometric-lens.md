@@ -261,11 +261,29 @@ the same `Z` on a continuous state space, where enumeration fails and the path i
 the only route. Seeing them as one object rather than two techniques is the point of
 studying them in sequence.
 
-**Source:** Feynman & Hibbs, *Quantum Mechanics and Path Integrals*, and Feynman's
-*Statistical Mechanics: A Set of Lectures* — the latter derives the partition-function /
-path-integral correspondence directly. The Feynman Lectures Vol. II chapter on the principle
-of least action is the intuitive entry point ⟦verify F1⟧ and is free at
-<https://www.feynmanlectures.caltech.edu/>.
+**Source — owned.** Feynman & Hibbs, *Quantum Mechanics and Path Integrals*, **Dover 2005
+emended edition** (Styer's corrected text — the 1965 original was notoriously typo-ridden,
+so this is the edition to have). Its statistical mechanics chapter ⟦verify F3⟧ derives the
+partition-function/path-integral correspondence directly: `Z = Tr e^{−βH}` *is* a path
+integral in imaginary time. That identity is §7, stated in its original vocabulary.
+
+**And the chapter that matters more than it looks.** F&H's probability chapter ⟦verify F4⟧
+covers the **Wiener integral** — Brownian motion as a path integral. That is the bridge from
+this thread to everything modern:
+
+```
+Wiener integral  →  Brownian motion  →  Langevin dynamics  →  SGD's stationary
+     (F&H)                                                     distribution  (§8)
+                                              ↓
+                              score-based diffusion, probability-flow ODE
+                                        (module 6)
+```
+
+The papers downloaded for §8 and for module 6 are, formally, applications of the
+construction in a book already on your shelf. The vocabulary changed; the object did not.
+
+The *Lectures on Physics* (Millennium Edition) chapter on the principle of least action is
+the intuitive entry point ⟦verify F1⟧.
 
 ### 8. Training samples a distribution; it does not find a minimum
 
@@ -662,6 +680,8 @@ checked against the book it names.
 | ID | Book | Question | Expected |
 |---|---|---|---|
 | **P1** | Pierce (Dover 1980) | What are **Ch. 9** and **Ch. 10** titled? | Ch. 10 expected to be *Information Theory and Physics* — the Landauer / thermodynamics bridge for module 6. Ch. 9 expected *Many Dimensions*, which may also be relevant to phase 5's high-dimensional geometry. |
-| **F1** | Feynman, *Lectures on Physics* Vol. II | Which chapter is **The Principle of Least Action**? *(The free Caltech edition blocks automated fetches, so this could not be checked programmatically.)* | Ch. 19 |
-| **F2** | Do you own **Feynman & Hibbs**, *Quantum Mechanics and Path Integrals* (Dover), and/or Feynman's *Statistical Mechanics: A Set of Lectures*? | The direct sources for §7 — the partition-function/path-integral correspondence | — |
+| **F1** | Feynman, *Lectures on Physics*, **Millennium Edition** ✅ owned | Which **Vol. II** chapter is *The Principle of Least Action*? *(Caltech's free edition blocks automated fetches; the print set settles it.)* | Ch. 19 |
+| **F2** | ✅ **Resolved** — Feynman & Hibbs, *Quantum Mechanics and Path Integrals*, Dover **2005 emended edition**, owned. The Styer-corrected text. | — | — |
+| **F3** | Feynman & Hibbs | Which chapter is **Statistical Mechanics**? This is §7's direct source — `Z = Tr e^{−βH}` as a path integral in imaginary time. | ~Ch. 10 |
+| **F4** | Feynman & Hibbs | Is there a chapter covering **probability / the Wiener integral / Brownian motion**? Which? | ~Ch. 12, late in the book — the bridge to §8 and to diffusion models |
 | **P2** | Hertz, Krogh & Palmer (1991) | Is there a chapter on the **formal statistical mechanics** of neural networks? Which number? | Expected last in the book — the formal treatment underpinning the capacity results in Ch. 5 |

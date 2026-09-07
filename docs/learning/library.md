@@ -137,6 +137,13 @@ Added to support a geometry-first reading. See [`geometric-lens.md`](./geometric
 | **Jacot et al. (2018)** — *Neural Tangent Kernel* | **Phase 2.** Training dynamics in the infinite-width limit. |
 | **Lee et al. (2018)** — *Deep Neural Networks as Gaussian Processes* | **Phase 2.** The free theory: infinite width is exactly a Gaussian process, and therefore learns no features. |
 
+### Feynman — the path-integral source
+
+| Text | Role |
+|---|---|
+| **Feynman & Hibbs** — *Quantum Mechanics and Path Integrals*, Dover **2005 emended ed.** | **Modules 5–6, structural.** The statistical mechanics chapter ⟦F3⟧ derives `Z = Tr e^{−βH}` as a path integral in imaginary time — §7's identity in its original vocabulary. The probability chapter ⟦F4⟧ covers the **Wiener integral**, which is the formal bridge from Brownian motion to Langevin dynamics to SGD's stationary distribution (§8) and to score-based diffusion (module 6). The 2005 Styer emendation is the edition to use; the 1965 original is riddled with errata. |
+| **Feynman** — *The Lectures on Physics*, Millennium Edition | **Phase 0 onward.** The least-action chapter ⟦F1⟧ is the intuitive entry to variational principles, which underpin the physics thread throughout. |
+
 ### From the Wider Shelf — Geometric and Foundational
 
 Surfaced when the arc was re-framed around geometry. Chapter references are **unverified**
