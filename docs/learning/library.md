@@ -141,8 +141,8 @@ Added to support a geometry-first reading. See [`geometric-lens.md`](./geometric
 
 | Text | Role |
 |---|---|
-| **Feynman & Hibbs** — *Quantum Mechanics and Path Integrals*, Dover **2005 emended ed.** | **Modules 5–6, structural.** The statistical mechanics chapter ⟦F3⟧ derives `Z = Tr e^{−βH}` as a path integral in imaginary time — §7's identity in its original vocabulary. The probability chapter ⟦F4⟧ covers the **Wiener integral**, which is the formal bridge from Brownian motion to Langevin dynamics to SGD's stationary distribution (§8) and to score-based diffusion (module 6). The 2005 Styer emendation is the edition to use; the 1965 original is riddled with errata. |
-| **Feynman** — *The Lectures on Physics*, Millennium Edition | **Phase 0 onward.** The least-action chapter ⟦F1⟧ is the intuitive entry to variational principles, which underpin the physics thread throughout. |
+| **Feynman & Hibbs** — *Quantum Mechanics and Path Integrals*, Dover **2005 emended ed.** | **Modules 5–6, structural.** **Ch. 10 *Statistical Mechanics*** ✅ derives `Z = Tr e^{−βH}` as a path integral in imaginary time — §7's identity in its original vocabulary. **Ch. 12** ✅, the probability chapter, covers the **Wiener integral**, which is the formal bridge from Brownian motion to Langevin dynamics to SGD's stationary distribution (§8) and to score-based diffusion (module 6). The 2005 Styer emendation is the edition to use; the 1965 original is riddled with errata. |
+| **Feynman** — *The Lectures on Physics*, Millennium Edition | **Phase 0 onward.** **Vol. II Ch. 19 *The Principle of Least Action*** ✅ is the intuitive entry to variational principles, which underpin the physics thread throughout. |
 
 ### From the Wider Shelf — Geometric and Foundational
 
