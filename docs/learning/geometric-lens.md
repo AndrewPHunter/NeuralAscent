@@ -58,11 +58,11 @@ the picture elsewhere. It is not permission to move on.
 
 ---
 
-## Six Ideas That Run Through Everything
+## Eight Ideas That Run Through Everything
 
-These are not module-specific. Ideas 3–4 belong to the physics thread, 5 to the statistical
-thread, and 6 to the field-theoretic thread; each has its own section below, since each spans
-every phase.
+These are not module-specific. Ideas 3–4 and 7–8 belong to the physics thread, 5 to the
+statistical thread, and 6 to the field-theoretic thread; each has its own section below,
+since each spans every phase.
 
 ### 1. Backpropagation is the pullback of a covector
 
@@ -236,6 +236,64 @@ ellipse with axes `φ` and `1/φ`. Now name the rotation that accompanies it.
 **Checkpoint, phase 5:** derive `softmax = argmin F` yourself. Set up the Lagrangian for
 minimising `⟨E,p⟩ − H(p)` subject to `Σpᵢ = 1`, take the stationarity condition, and watch
 the exponential fall out of it. Then read the `√d` off as a temperature.
+
+### 7. The sum *is* the path integral
+
+The observation that makes the notation stop lying.
+
+```
+Z = Σ_states exp(−E / T)        statistical mechanics, discrete index set
+Z = ∫ D[x]  exp(−S[x] / ħ)      Feynman, continuous index set
+```
+
+These are **the same construction.** Feynman's formulation is literally *sum over
+histories*; the integral is the continuum limit of the sum. They differ only in whether what
+you are indexing over is discrete or continuous — not in what kind of object they are.
+
+So softmax's denominator, `Σⱼ exp(zⱼ)`, is a partition function on a finite index set, which
+is to say **a discrete sum over paths**. The field writes `Σ` because the vocabulary is
+finite, and that notation hides the fact that it is the same object as the continuum
+construction. The sum is not an approximation to an integral. Both are `Z`.
+
+**Why this is the bridge from module 5 to module 6.** Module 5's softmax sums over a finite
+set of positions; module 6's continuous formulations (probability-flow ODE, diffusion) take
+the same `Z` on a continuous state space, where enumeration fails and the path integral is
+the only route. Seeing them as one object rather than two techniques is the point of
+studying them in sequence.
+
+**Source:** Feynman & Hibbs, *Quantum Mechanics and Path Integrals*, and Feynman's
+*Statistical Mechanics: A Set of Lectures* — the latter derives the partition-function /
+path-integral correspondence directly. The Feynman Lectures Vol. II chapter on the principle
+of least action is the intuitive entry point ⟦verify F1⟧ and is free at
+<https://www.feynmanlectures.caltech.edu/>.
+
+### 8. Training samples a distribution; it does not find a minimum
+
+The mental model "gradient descent finds the minimum" is wrong, and the correct version is
+already familiar from §3.
+
+SGD with gradient noise has a **stationary distribution over parameters**:
+
+```
+p(w)  ∝  exp( −L(w) / T )          T set by learning rate and batch size
+```
+
+That is a Gibbs measure on the `n`-dimensional parameter space. Training does not terminate
+at a point; it equilibrates to a distribution — and Chaudhari & Soatto (arXiv:1710.11029)
+show deep networks converge to **limit cycles**, not minima at all. Mandt, Hoffman & Blei
+(arXiv:1704.04289) read the same fact as approximate Bayesian inference.
+
+**The pairing worth holding:**
+
+| | Gibbs measure over | Temperature |
+|---|---|---|
+| **Softmax** | the vocabulary | `√d` |
+| **SGD's stationary distribution** | the parameters | learning rate / batch size |
+
+Same construction, two different spaces. Once you see that, "learning rate" and "attention
+temperature" stop being unrelated hyperparameters and become the same knob in two places.
+And the descent trajectories themselves carry an action functional (Onsager–Machlup), so
+paths are weighted — a path integral over training histories, per §7.
 
 ---
 
@@ -604,4 +662,6 @@ checked against the book it names.
 | ID | Book | Question | Expected |
 |---|---|---|---|
 | **P1** | Pierce (Dover 1980) | What are **Ch. 9** and **Ch. 10** titled? | Ch. 10 expected to be *Information Theory and Physics* — the Landauer / thermodynamics bridge for module 6. Ch. 9 expected *Many Dimensions*, which may also be relevant to phase 5's high-dimensional geometry. |
+| **F1** | Feynman, *Lectures on Physics* Vol. II | Which chapter is **The Principle of Least Action**? *(The free Caltech edition blocks automated fetches, so this could not be checked programmatically.)* | Ch. 19 |
+| **F2** | Do you own **Feynman & Hibbs**, *Quantum Mechanics and Path Integrals* (Dover), and/or Feynman's *Statistical Mechanics: A Set of Lectures*? | The direct sources for §7 — the partition-function/path-integral correspondence | — |
 | **P2** | Hertz, Krogh & Palmer (1991) | Is there a chapter on the **formal statistical mechanics** of neural networks? Which number? | Expected last in the book — the formal treatment underpinning the capacity results in Ch. 5 |

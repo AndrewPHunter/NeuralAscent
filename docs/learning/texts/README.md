@@ -167,6 +167,29 @@ Networks and Quantum Field Theory* ([2008.08601](https://arxiv.org/abs/2008.0860
 
 ---
 
+## Descent as Sampling — Papers
+
+Training does not find a minimum; it equilibrates to a Gibbs measure over parameters. See
+[`../geometric-lens.md`](../geometric-lens.md#8-training-samples-a-distribution-it-does-not-find-a-minimum).
+
+```bash
+curl -L -o "docs/learning/texts/chaudhari-soatto-sgd-variational-inference.pdf" "https://arxiv.org/pdf/1710.11029"
+curl -L -o "docs/learning/texts/mandt-sgd-approximate-bayesian.pdf"            "https://arxiv.org/pdf/1704.04289"
+```
+
+| Paper | arXiv | Why |
+|---|---|---|
+| Chaudhari & Soatto, *SGD performs variational inference, converges to limit cycles* | [1710.11029](https://arxiv.org/abs/1710.11029) | Deep networks converge to limit cycles, not minima. 20 pp. |
+| Mandt, Hoffman & Blei, *SGD as Approximate Bayesian Inference* | [1704.04289](https://arxiv.org/abs/1704.04289) | The same fact read as inference. 35 pp. |
+
+**Feynman**, for §7 (the sum is the path integral): *Quantum Mechanics and Path Integrals*
+(with Hibbs, Dover) and *Statistical Mechanics: A Set of Lectures* — the latter derives the
+partition-function/path-integral correspondence directly. The *Lectures on Physics* are free
+at <https://www.feynmanlectures.caltech.edu/> (the site blocks automated fetches, so the
+least-action chapter number is unverified — see F1).
+
+---
+
 ## Everything else
 
 The remaining seven texts are print only. See [`../library.md`](../library.md).
